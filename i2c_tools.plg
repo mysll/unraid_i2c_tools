@@ -2,9 +2,9 @@
 
 <!DOCTYPE PLUGIN [
 <!ENTITY name      "i2c_tools">
-<!ENTITY author    "sll">
-<!ENTITY version   "2022.05.2">
-<!ENTITY pluginURL "http://localhost">
+<!ENTITY author    "mysll">
+<!ENTITY version   "1.0.0">
+<!ENTITY pluginURL "https://raw.githubusercontent.com/mysll/unraid_i2c_tools/master/&name;.plg">
 <!ENTITY source    "/boot/config/plugins/&name;/&name;">
 <!ENTITY MD5       "d9a65b7f2c08426dd730b9df63b7ecc4">
 ]>
@@ -21,7 +21,7 @@
 
 <!-- SOURCE PACKAGE -->
 <FILE Name="&source;.txz" Run="upgradepkg --install-new --reinstall">
-<URL>http://localhost</URL>
+<URL>https://raw.githubusercontent.com/mysll/unraid_i2c_tools/master/archive/&name;.txz</URL>
 <MD5>&MD5;</MD5>
 </FILE>
 
@@ -50,12 +50,12 @@ echo ""
 <FILE Run="/bin/bash" Method="remove">
 <INLINE>
 # Remove plugin related files
+rm -rf /boot/config/plugins/&name;
 rm -rf /usr/lib64/libi2c.so.0
 rm -rf /usr/lib64/libi2c.so
 
-
 # Uninstall the 'source' package
-removepkg &source;.txz
+removepkg &name;
 </INLINE>
 </FILE>
 
