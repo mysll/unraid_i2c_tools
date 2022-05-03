@@ -1,0 +1,62 @@
+<?xml version='1.0' standalone='yes'?>
+
+<!DOCTYPE PLUGIN [
+<!ENTITY name      "i2c_tools">
+<!ENTITY author    "sll">
+<!ENTITY version   "2022.05.2">
+<!ENTITY pluginURL "http://localhost">
+<!ENTITY source    "/boot/config/plugins/&name;/&name;">
+<!ENTITY MD5       "d9a65b7f2c08426dd730b9df63b7ecc4">
+]>
+
+<PLUGIN name="&name;" author="&author;" version="&version;" pluginURL="&pluginURL;" min="6.1.9">
+
+<CHANGES>
+##&name;
+
+###&version;
+- support i2c_tools
+</CHANGES>
+
+
+<!-- SOURCE PACKAGE -->
+<FILE Name="&source;.txz" Run="upgradepkg --install-new --reinstall">
+<URL>http://localhost</URL>
+<MD5>&MD5;</MD5>
+</FILE>
+
+
+<!-- POST-INSTALL SCRIPT -->
+<FILE Run="/bin/bash">
+<INLINE>
+ln -sf /usr/lib64/libi2c.so.0.1.0 /usr/lib64/libi2c.so.0
+ln -sf /usr/lib64/libi2c.so.0.1.0 /usr/lib64/libi2c.so
+chmod +0755 /usr/sbin/i2cdetect
+chmod +0755 /usr/sbin/i2cdump
+chmod +0755 /usr/sbin/i2cget
+chmod +0755 /usr/sbin/i2cset
+chmod +0755 /usr/sbin/i2ctransfer
+
+echo ""
+echo "-----------------------------------------------------------"
+echo " Plugin &name; is installed."
+echo " Version: &version;"
+echo "-----------------------------------------------------------"
+echo ""
+</INLINE>
+</FILE>
+
+<!-- REMOVE SCRIPT -->
+<FILE Run="/bin/bash" Method="remove">
+<INLINE>
+# Remove plugin related files
+rm -rf /usr/lib64/libi2c.so.0
+rm -rf /usr/lib64/libi2c.so
+
+
+# Uninstall the 'source' package
+removepkg &source;.txz
+</INLINE>
+</FILE>
+
+</PLUGIN>
