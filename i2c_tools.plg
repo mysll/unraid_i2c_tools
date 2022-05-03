@@ -3,7 +3,7 @@
 <!DOCTYPE PLUGIN [
 <!ENTITY name      "i2c_tools">
 <!ENTITY author    "mysll">
-<!ENTITY version   "1.0.0">
+<!ENTITY version   "2022.05.3">
 <!ENTITY pluginURL "https://raw.githubusercontent.com/mysll/unraid_i2c_tools/master/&name;.plg">
 <!ENTITY source    "/boot/config/plugins/&name;/&name;">
 <!ENTITY MD5       "d9a65b7f2c08426dd730b9df63b7ecc4">
